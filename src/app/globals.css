@@ -1,26 +1,265 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-purple: var(--neon-purple);
+  --color-neon-pink: var(--neon-pink);
+  
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  
+  /* Overrides for dynamic neutrals */
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-950: var(--neutral-950);
+  
+  --font-sans: var(--font-sans-body), sans-serif;
+  --font-heading: var(--font-heading-serif), "Times New Roman", Times, Georgia, serif;
+  --font-mono: var(--font-sans-body), monospace;
+  
+  --animate-neon-pulse: neon-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow-slow: glow-slow 12s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes neon-pulse {
+    0%, 100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 var(--pulse-glow-radius-max) var(--neon-cyan)) drop-shadow(0 0 var(--pulse-glow-radius-blur) var(--neon-cyan));
+    }
+    50% {
+      opacity: 0.85;
+      filter: drop-shadow(0 0 var(--pulse-glow-radius-min) var(--neon-cyan)) drop-shadow(0 0 var(--pulse-glow-radius-fade) var(--neon-cyan));
+    }
+  }
+  @keyframes glow-slow {
+    0%, 100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -40px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.95);
+    }
+  }
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
   }
 }
 
-body {
+:root {
+  /* LIGHT THEME VARIABLES */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  
+  --neon-cyan: #2563eb; /* Accent blue */
+  --neon-purple: #7c3aed; /* Violet */
+  --neon-pink: #db2777; /* Rose */
+  
+  /* Redefined Neutrals for Light Mode */
+  --neutral-100: #f8fafc;
+  --neutral-200: #0f172a; /* Primary text */
+  --neutral-300: #334155; /* Secondary text */
+  --neutral-400: #334155; /* Secondary text */
+  --neutral-500: #64748b; /* Muted text */
+  --neutral-600: #64748b; /* Muted text */
+  --neutral-700: #64748b; /* Muted text */
+  --neutral-800: #e2e8f0; /* Borders */
+  --neutral-900: #f8fafc; /* Secondary Background */
+  --neutral-950: #ffffff; /* Page Background */
+  
+  /* Cards in light mode */
+  --glass-bg: #ffffff;
+  --glass-border: #e2e8f0;
+  --glass-backdrop: none;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --card-hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  
+  --grid-color: rgba(0, 0, 0, 0.015);
+  
+  /* Pulse Glow reductions (70% less glow) */
+  --pulse-glow-radius-max: 1.2px;
+  --pulse-glow-radius-blur: 3px;
+  --pulse-glow-radius-min: 0.3px;
+  --pulse-glow-radius-fade: 1px;
+  
+  /* Dynamic text shadow variables */
+  --text-glow-cyan-val: 0 0 2.4px rgba(37, 99, 235, 0.3);
+  --text-glow-purple-val: 0 0 2.4px rgba(124, 58, 237, 0.3);
+  --border-glow-val: 0 2px 8px rgba(37, 99, 235, 0.15);
+}
+
+html.dark {
+  /* DARK THEME VARIABLES */
+  --background: #050505;
+  --foreground: #ededed;
+  
+  --neon-cyan: #00f0ff; /* Cyan */
+  --neon-purple: #bd00ff; /* Purple */
+  --neon-pink: #ff007a;
+  
+  /* Redefined Neutrals for Dark Mode */
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  --neutral-950: #050505;
+  
+  /* Cards in dark mode (glassmorphism) */
+  --glass-bg: rgba(6, 6, 8, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-backdrop: blur(14px);
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --card-hover-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.1);
+  
+  --grid-color: rgba(255, 255, 255, 0.015);
+  
+  /* Full Pulse Glow in Dark Mode */
+  --pulse-glow-radius-max: 4px;
+  --pulse-glow-radius-blur: 10px;
+  --pulse-glow-radius-min: 1px;
+  --pulse-glow-radius-fade: 3px;
+  
+  /* Dynamic text shadow variables */
+  --text-glow-cyan-val: 0 0 8px var(--neon-cyan);
+  --text-glow-purple-val: 0 0 8px var(--neon-purple);
+  --border-glow-val: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-purple);
+}
+
+/* Custom utilities */
+@utility glassmorphism {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@utility glassmorphism-glow {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--neon-cyan);
+  box-shadow: var(--card-shadow);
+}
+
+@utility text-glow-cyan {
+  text-shadow: var(--text-glow-cyan-val);
+}
+
+@utility text-glow-purple {
+  text-shadow: var(--text-glow-purple-val);
+}
+
+@utility bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+}
+
+@utility bg-radial-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.08) 0%, rgba(37, 99, 235, 0.03) 50%, transparent 100%);
+}
+
+@utility border-glow {
+  box-shadow: var(--border-glow-val);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
   background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}
+
+/* Selection Highlight */
+::selection {
+  background: var(--neon-cyan);
+  color: #ffffff;
+}
+
+/* Global resets and structure */
+html, body {
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.7;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading), sans-serif;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.7;
+  max-width: 70ch;
+}
+
+/* Card hover shadow */
+.glassmorphism {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glassmorphism:hover, .interactive-card:hover {
+  box-shadow: var(--card-hover-shadow) !important;
+}
+
+/* Custom hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

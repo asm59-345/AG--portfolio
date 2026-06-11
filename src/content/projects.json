@@ -1,0 +1,200 @@
+[
+  {
+    "slug": "sarkarai-os",
+    "title": "SarkarAI OS – Schemes Operating System",
+    "description": "Next-gen administrative operating portal using stateful agent graphs to search, OCR-validate documents, and check scheme eligibility.",
+    "category": "AI & ML",
+    "tech": ["Next.js", "React", "FastAPI", "ChromaDB", "LangGraph", "Python", "Gemini API"],
+    "github": "https://github.com/asm59-345/SARKAR_ai_APL",
+    "featured": true,
+    "longDescription": "SarkarAI OS is a premium simulated schemes operating environment built for rapid policy discovery. Driven by custom LangGraph state machines, the portal processes user documents (OCR scans of income/identity details), checks constraints (age thresholds, regional criteria), matches them against a ChromaDB Vector Index of central/state government schemes, and returns visual compliance reports.",
+    "challenges": "Resolving nested dependency policies where different rules applied based on combinations of minor demographic data. We resolved this by building dynamic decision trees executed as discrete graph nodes inside LangGraph, preventing logic loops.",
+    "learnings": "Gained experience orchestrating complex stateful pipelines, scaling document query databases, and optimizing OCR extraction confidence scores.",
+    "architecture": "OCR Document Extraction node -> ChromaDB Semantic Embedding Matcher -> LangGraph Stateful Eligibility Validator -> Next.js Console Dashboard Dashboard.",
+    "metrics": {
+      "accuracy": "96.8% criteria validation",
+      "latency": "850ms execution delay",
+      "concurrency": "1000+ parallel sessions"
+    }
+  },
+  {
+    "slug": "multi-agent-research-agent",
+    "title": "Multi-Agent Research Agent",
+    "description": "Collaborative agent loop framework designed to scrape academic repositories, cross-check claims, and compile research reports.",
+    "category": "AI & ML",
+    "tech": ["Python", "LangGraph", "FastAPI", "Web scraping", "Gemini API", "Pinecone"],
+    "github": "https://github.com/asm59-345/AI-Customer-Support-Workflow",
+    "featured": true,
+    "longDescription": "An autonomous research engine that coordinates specialized AI agents (Web Scraper, Semantic Classifier, Summarizer, and Critic). By analyzing input topics, the agents crawl PubMed, arXiv, and developer blogs, extract citation vectors, perform verification checks to prevent hallucination, and compile styled Markdown summaries.",
+    "challenges": "Handling web scraping rate-limiting and citation mapping logic across heterogeneous formats. Addressed by deploying asymmetric rate-limit buckets and validating extracted statements against raw semantic vectors.",
+    "learnings": "Understood the complexities of multi-agent state coordination, critic validation loops, and dynamic task scheduling.",
+    "architecture": "Task Planner Node -> Concurrent Scrapers -> Citation Verification Critic -> Markdown Document Compiler.",
+    "metrics": {
+      "accuracy": "98.2% citation faithfulness",
+      "latency": "Variable (8-15s per run)",
+      "concurrency": "Coordinates 8 concurrent agent tasks"
+    }
+  },
+  {
+    "slug": "gesture-ai",
+    "title": "Gesture-AI – Visual Sign Language Translator",
+    "description": "Real-time gesture and sign language translator leveraging computer vision and LSTM classification models.",
+    "category": "NLP & CV",
+    "tech": ["OpenCV", "MediaPipe", "TensorFlow", "Keras", "Python", "React"],
+    "github": "https://github.com/asm59-345/Gesture-Ai",
+    "featured": false,
+    "longDescription": "Gesture-AI is a real-time computer vision platform translating hand signs into spoken sentences. It extracts 21 geometric landmarks from hand frameworks in video streams using MediaPipe, feeds coordinate sequences into an LSTM model, and updates translations instantly on a clean dashboard overlay.",
+    "challenges": "Handling hand overlaps, camera motion blurs, and varying light conditions. Resolved by isolating landmark vectors from raw image pixels using MediaPipe, creating a hardware-independent coordinate array.",
+    "learnings": "Mastered coordinate geometry extraction, visual buffer queues, and deploying Keras models on real-time video interfaces.",
+    "architecture": "Webcam Video Stream -> MediaPipe Landmark Extractor -> Rolling Coordinate Frame Buffer -> TensorFlow LSTM Classifier -> Text Output.",
+    "metrics": {
+      "accuracy": "94.5% gestural accuracy",
+      "latency": "Real-time 30+ FPS",
+      "concurrency": "Executed client-side"
+    }
+  },
+  {
+    "slug": "career-wise-ai",
+    "title": "Career-Wise AI – Career Planner",
+    "description": "Intelligent career path planning agent that compiles skills checklists, roadmaps, and chat advisors.",
+    "category": "Web Dev",
+    "tech": ["Next.js", "React", "Gemini API", "Supabase", "FastAPI", "Tailwind CSS"],
+    "github": "https://github.com/asm59-345/Career-Wise.",
+    "featured": false,
+    "longDescription": "An agentic career counseling dashboard that helps developers structure custom learning paths. The tool processes questionnaires, scrapes job postings, compiles industry requirements, and uses a Gemini-backed advisor chat tool to direct candidates through custom training roadmaps.",
+    "challenges": "Maintaining conversation state and generating structured JSON objects for roadmaps. Solved by writing strict Pydantic JSON validation schemas and syncing session variables to Supabase.",
+    "learnings": "Gained experience in structured LLM generation, dynamic schema validation, and database state sync.",
+    "architecture": "User input analyzer -> Job board scraper -> Advisor LLM planner -> Supabase profile caching.",
+    "metrics": {
+      "accuracy": "96.1% generation accuracy",
+      "latency": "1.5s generation delay",
+      "concurrency": "Supports 400+ active sessions"
+    }
+  },
+  {
+    "slug": "agentic-ai-workflow-copilot",
+    "title": "Agentic AI Workflow Copilot",
+    "description": "Multi-agent AI orchestration framework for intelligent task distribution and memory management.",
+    "category": "AI & ML",
+    "tech": ["Python", "LLMs", "LangChain", "FastAPI", "React"],
+    "github": "https://github.com/asm59-345/Agentic-AI-Copilot",
+    "featured": false,
+    "longDescription": "The Agentic AI Workflow Copilot is an orchestration environment enabling users to coordinate networks of task-specialized agents. The application ingests complex goals, decomposes them into structural dependencies, assigns them to individual agents (e.g. researcher, programmer, writer), maintains shared memory states, and streams intermediate execution outputs via WebSockets.",
+    "challenges": "Resolving cyclic dependency deadlocks and infinite loops where agents repeatedly hand off tasks to one another. Solved by writing strict state validation transitions and enforcing max-iteration limits on node connections.",
+    "learnings": "Mastered LangGraph state management patterns, async background worker setups in FastAPI, and writing reactive UI canvases in React.",
+    "architecture": "Goals are parsed by a Planner Node using structured outputs. Tasks are mapped to a DAG (Directed Acyclic Graph) executed by worker agents. A central StateGraph updates a PostgreSQL transaction log, which is pushed to the client via WebSockets.",
+    "metrics": {
+      "accuracy": "91.8%",
+      "latency": "Variable by task depth",
+      "concurrency": "10 simultaneous graph runs"
+    }
+  },
+  {
+    "slug": "medical-ai-chatbot-rag",
+    "title": "Medical AI Chatbot (RAG)",
+    "description": "Medical assistant using Retrieval Augmented Generation for accurate contextual responses.",
+    "category": "AI & ML",
+    "tech": ["Python", "RAG", "Vector DB", "LangChain", "Pinecone"],
+    "github": "https://github.com/asm59-345/Medical-RAG-Chatbot",
+    "featured": false,
+    "longDescription": "This project is a clinical question-answering assistant that retrieves medically validated information from peer-reviewed databases (such as PubMed abstracts) to answer symptoms queries while appending precise medical citations to prevent medical hallucination.",
+    "challenges": "Medical information is highly sensitive; even minor hallucinations could lead to unsafe patient suggestions. We resolved this by implementing a RAG evaluator pipeline that cross-checks LLM candidate answers against retrieved context snippets to ensure semantic faithfulness before outputting.",
+    "learnings": "Gained deep experience in embedding model optimizations, hybrid keywords+vector search indexing, and clinical safety guardrails.",
+    "architecture": "Symptoms queries are embedded using BGE-Large and sent to a Pinecone vector index. Retrieved abstracts are ranked using a cross-encoder model. The top 3 chunks form the grounding context for an LLM query which generates the final answer with bibliography tags.",
+    "metrics": {
+      "accuracy": "96.5% factual alignment",
+      "latency": "850ms avg response time",
+      "concurrency": "100+ active streams"
+    }
+  },
+  {
+    "slug": "ai-smart-grievance-hub",
+    "title": "AI Smart Grievance Hub",
+    "description": "AI-powered complaint classification and routing platform.",
+    "category": "NLP & CV",
+    "tech": ["NLP", "FastAPI", "React", "Scikit-Learn"],
+    "github": "https://github.com/asm59-345/Smart-Grievance-Hub",
+    "featured": false,
+    "longDescription": "The AI Smart Grievance Hub is an administrative dashboard that automatically ingests unstructured citizen complaints, extracts key entities (location, department, severity), classifies the category, and routes it to the corresponding municipal department.",
+    "challenges": "Ingesting complaints written in regional dialects containing mixed English and Hindi text. Resolved by fine-tuning a bilingual DistilBERT text classifier on localized corpora.",
+    "learnings": "Understood the complexities of data labeling, transformer model fine-tuning, and writing automated queue routers.",
+    "architecture": "Text complaint reports are received via API, passed to the custom NLP model which extracts severity and coordinates, logs the entry to the DB, and schedules email alerts to relevant administrative boards.",
+    "metrics": {
+      "accuracy": "89.2% classification accuracy",
+      "latency": "350ms processing time",
+      "concurrency": "Handles bulk CSV uploads of 5k rows"
+    }
+  },
+  {
+    "slug": "upi-fraud-detection",
+    "title": "UPI Fraud Detection System",
+    "description": "Machine Learning system detecting fraudulent UPI transactions.",
+    "category": "AI & ML",
+    "tech": ["Python", "Scikit-Learn", "Pandas", "XGBoost"],
+    "github": "https://github.com/asm59-345/UPI-Fraud-Detection",
+    "featured": false,
+    "longDescription": "An online risk classification system processing incoming transaction feeds to detect fraudulent UPI actions based on payment sizes, frequency thresholds, coordinate anomalies, and device profiles.",
+    "challenges": "Extremely skewed target variable (less than 0.08% of transaction dataset represents fraud). We addressed this class imbalance by applying SMOTE resamplers and optimizing recall metrics using XGBoost loss scales.",
+    "learnings": "Understood quantitative metrics optimization, anomaly detection frameworks, and statistical data scaling methods.",
+    "architecture": "Processes payment logs, scales numeric values, maps coordinates distance metrics, runs inference against the trained XGBoost model, and issues warnings if risk exceeds 0.85.",
+    "metrics": {
+      "accuracy": "98.9% Area Under ROC",
+      "latency": "45ms inference latency",
+      "concurrency": "Evaluates up to 10k transactions/sec"
+    }
+  },
+  {
+    "slug": "sign-language-translator",
+    "title": "Sign Language Translator",
+    "description": "Computer Vision application translating hand gestures into text.",
+    "category": "NLP & CV",
+    "tech": ["OpenCV", "MediaPipe", "TensorFlow", "Python"],
+    "github": "https://github.com/asm59-345/Sign-Language-Translator",
+    "featured": false,
+    "longDescription": "A real-time visual translator that reads webcam feeds, detects hand coordinates landmarks, maps gesture geometries, and translates them into text characters and sentences.",
+    "challenges": "Handling hand overlaps, lighting variations, and fast motion blurs. We resolved this by using MediaPipe to extract absolute coordinate grids rather than raw images, then feeding coordinates arrays to an LSTM model.",
+    "learnings": "Understood coordinate geometry tracking, recurrent neural networks configurations, and real-time video buffer handling.",
+    "architecture": "Captures image frame, processes hand landmarks via MediaPipe pipeline, collects a sequence of 30 coordinate frames, feeds the array to a Keras LSTM model, and updates the translation output on the screen.",
+    "metrics": {
+      "accuracy": "92.1% gesture recognition rate",
+      "latency": "Real-time 30 FPS",
+      "concurrency": "Local device camera client"
+    }
+  },
+  {
+    "slug": "ai-voice-detection-system",
+    "title": "AI Voice Detection System",
+    "description": "Regional voice recognition and transcription platform.",
+    "category": "NLP & CV",
+    "tech": ["Python", "Speech Recognition", "NLP", "FastAPI"],
+    "github": "https://github.com/asm59-345/Voice-Recognition-Regional",
+    "featured": false,
+    "longDescription": "An audio processing microservice that transcribes incoming regional speech feeds (Hindi, Urdu, English), performs translation, and analyzes vocal pitch indicators for sentiment tracking.",
+    "challenges": "Poor transcription accuracy for low-resource regional dialects. Resolved by fine-tuning Whisper-Large models using customized phonetic tokens.",
+    "learnings": "Learned speech tokenizations, audio file normalization, and model compression setups.",
+    "architecture": "Audio inputs are segmented, normalized to 16kHz, transcribed via Whisper, mapped to semantic text classifiers, and saved to database logs.",
+    "metrics": {
+      "accuracy": "87.4% Word Error Rate (WER)",
+      "latency": "1.8s for 10s audio",
+      "concurrency": "15 parallel audio streams"
+    }
+  },
+  {
+    "slug": "dsa-instructor-platform",
+    "title": "DSA Instructor Platform",
+    "description": "Interactive learning platform with Gemini-powered chatbot for tutoring coding problems.",
+    "category": "Web Dev",
+    "tech": ["React", "Next.js", "Gemini API", "Tailwind CSS"],
+    "github": "https://github.com/asm59-345/DSA-Instructor",
+    "featured": false,
+    "longDescription": "A learning portal offering code editor environments where an AI instructor provides hints to students debugging data structures without directly giving away the solution.",
+    "challenges": "Enforcing instructions constraints so the LLM doesn't simply output correct code immediately. Resolved by writing a strict system instruction set and setting temperature params to 0.2.",
+    "learnings": "Gained experience in system prompt design, Next.js dynamic endpoints, and code highlight tools.",
+    "architecture": "Standard Next.js App Router project calling a POST endpoint which packages system instructions, student code blocks, and conversation logs before sending them to the Gemini API.",
+    "metrics": {
+      "accuracy": "95.0% adherence to instructions",
+      "latency": "950ms response streaming",
+      "concurrency": "150 active sandboxes"
+    }
+  }
+]

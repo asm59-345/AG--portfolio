@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "demystifying-rag-pipelines-2026",
+    "title": "Demystifying RAG: From Naive Chunking to Advanced Parent-Document Retrieval",
+    "description": "An in-depth guide on optimizing Retrieval-Augmented Generation systems to reduce hallucinations and improve citation accuracy.",
+    "category": "LLMs & RAG",
+    "tags": ["RAG", "LLMs", "Vector DB", "Embeddings", "FastAPI"],
+    "date": "May 24, 2026",
+    "readTime": "6 min read",
+    "featured": true,
+    "content": "Retrieval-Augmented Generation (RAG) has emerged as the standard pattern for bringing external domain knowledge into Large Language Models (LLMs) without expensive fine-tuning. However, building a production-grade RAG pipeline requires moving beyond naive chunking.\n\n### The Problem with Naive Chunking\nStandard chunking splitting files into fixed 500-character blocks often cuts sentences in half, causing loss of contextual logic. When a user asks a complex query, the retrieved chunks lack critical context, resulting in incomplete or hallucinated answers.\n\n### Enter Parent-Document Retrieval\nParent-Document Retrieval resolves this by splitting documents into small snippets (e.g., 100 characters) for vector index embedding. When a query matches a snippet, the retrieval mechanism fetches the larger parent document (e.g., 2000 characters) containing the full paragraph or page structure. This provides the LLM with surrounding context while maintaining highly precise semantic query matching.\n\n### Reranking: The Crucial Second Pass\nAfter retrieving candidate documents, a cross-encoder reranker model (such as BGE-Reranker) re-evaluates the relevance of each document against the query. Reranking filters out semantic noise, moving high-value context chunks to the top of the context block. In tests built for the Medical AI Chatbot, adding parent retrieval and cross-encoder reranking boosted context accuracy from 72% to 94.2%."
+  },
+  {
+    "slug": "understanding-agentic-ai-langgraph",
+    "title": "Building Stateful Agent Networks: Moving from Chains to LangGraph Graphs",
+    "description": "How to structure autonomous agentic workflows using cyclic graphs, persistent checkpoints, and human-in-the-loop validation.",
+    "category": "Agentic AI",
+    "tags": ["Agentic AI", "LangGraph", "LangChain", "Python"],
+    "date": "April 12, 2026",
+    "readTime": "8 min read",
+    "featured": true,
+    "content": "Single LLM chains work well for simple transformations, but fail when tasks require autonomous planning, iterative refinement, or self-correction. To tackle these, developer architectures are shifting toward Agentic AI workflows.\n\n### Chains vs. Graphs\nTraditional chains follow a sequential pipeline (e.g. Ingestion -> Summarization -> Classification). If the summarizer fails, the classification output degrades. In contrast, graph-based agent structures use nodes (executors) and conditional edges (decision branches) to form cyclic loops. If an agent's code execution fails a linter, a grader node conditional edge routes the output back to the code agent for rewriting.\n\n### State Management in LangGraph\nIn LangGraph, state is maintained in a centralized schema (a StateGraph). Every node receives the current state, performs an action, and writes updates to the state. This enables:\n1. **Stateful Checkpointing**: The graph can save state after every transition, allowing developers to restart execution on error.\n2. **Human-in-the-loop**: The execution can pause before executing critical actions (e.g., sending a payment or deploying a container) to await administrator verification.\n\n### Case Study: Agentic AI Workflow Copilot\nIn the Agentic AI Workflow Copilot project, our LangGraph coordinator decomposes goals into task nodes, delegates them to specialized developer and QA agent nodes, and tracks state variables dynamically. This multi-agent structure has proven 3x more effective than traditional LangChain linear sequences for generating code."
+  },
+  {
+    "slug": "introducing-model-context-protocol",
+    "title": "Why Model Context Protocol (MCP) is the Future of AI Integration Tools",
+    "description": "Exploring Anthropic's Model Context Protocol (MCP) and how it standardizes tool invocation and context loading.",
+    "category": "System Design",
+    "tags": ["MCP", "API Design", "System Design", "Node.js"],
+    "date": "March 08, 2026",
+    "readTime": "5 min read",
+    "featured": false,
+    "content": "Integrating LLMs with local tools, database connections, and external APIs has historically required writing custom integrations for each provider (e.g. OpenAI function calling, LangChain tools). The Model Context Protocol (MCP) standardizes this connection.\n\n### What is MCP?\nMCP is an open standard designed by Anthropic that structures how AI clients (like Claude Desktop or custom agents) communicate with context servers (which list local directories, database columns, or search utilities). Rather than writing separate integrations for each tool, developers construct a single MCP server, and any MCP-compatible AI client can use it immediately.\n\n### The Architecture of MCP\nMCP operates over standard JSON-RPC transport layers (STDIO or SSE):\n- **Resources**: Expose data read capabilities (like reading database schemas or logs).\n- **Prompts**: Standardize templates (like bug analysis prompts).\n- **Tools**: Enable write capabilities (like running shell commands or rewriting files).\n\n### Implementing MCP Servers\nUsing Node.js or Python, building an MCP server is straightforward. By standardizing these actions, developers can quickly plug agent networks into enterprise tools, paving the way for reusable AI workflows."
+  },
+  {
+    "slug": "my-aktu-hackathon-journey",
+    "title": "Lessons from the Trenches: 36 Hours at the GenAI Exchange Hackathon",
+    "description": "How my team built a RAG citizen assistant inside a high-pressure hackathon sprint, and what we learned about prompt engineering under pressure.",
+    "category": "Hackathon Experience",
+    "tags": ["Hackathon", "Open Source", "Gemini API", "FastAPI"],
+    "date": "February 18, 2026",
+    "readTime": "7 min read",
+    "featured": false,
+    "content": "Participating in national hackathons teaches you lessons that classes can't teach. During the GenAI Exchange Hackathon, our team set out to solve a major administrative problem: helping citizens navigate complex, multi-page government scheme documents.\n\n### The Concept: SarkarAI\nWe realized that millions of citizens miss out on government assistance due to complex eligibility documents and bureaucratic jargon. Our goal was to build SarkarAI—an AI citizen assistant that takes unstructured queries, crawls vector indices of schemes, assesses eligibility through interactive chats, and extracts document requirements via document analysis.\n\n### The 24-Hour Pivot\n12 hours into the hackathon, we noticed our naive RAG pipeline was returning incorrect eligibility requirements because embedding similarities alone were matching wrong states' schemes. We pivoted: instead of embedding the whole dataset in one folder, we structured metadata fields (State, Category, Age) and configured a pre-filtering search router that queries only relevant subsets. This pre-filter eliminated mismatch hallucinations.\n\n### Key Takeaways\n1. **Speed is secondary to accuracy**: An assistant that gives wrong eligibility details is worse than no assistant at all. Validation metrics must be checked continuously.\n2. **Prototype first, polish later**: Build the API routing first, confirm integration, and then spend the remaining hours polishing UI micro-animations and loading screens.\n\nBuilding SarkarAI under pressure gave us deep practical experience, and we brought these design insights back into our daily development architectures."
+  }
+]
